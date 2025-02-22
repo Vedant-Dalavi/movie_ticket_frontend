@@ -18,8 +18,8 @@ function page() {
     const { userDetails, setUserDetails } = useContext(UserDetailContext)
 
     const [user, setUser] = useState({
-        userName: "",
-        password: ""
+        userName: "naval.ravikant",
+        password: "05111974"
     });
 
 
