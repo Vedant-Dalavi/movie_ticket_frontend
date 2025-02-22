@@ -1,4 +1,3 @@
-import Sidebar from "@/components/custom/Sidebar";
 import "./globals.css";
 import Provider from "./provider";
 import { Toaster } from "react-hot-toast";

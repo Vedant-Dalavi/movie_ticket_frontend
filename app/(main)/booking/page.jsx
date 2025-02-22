@@ -8,8 +8,7 @@ import React, { useContext, useEffect, useState, useMemo } from "react";
 
 function Page() {
     const { userDetails } = useContext(UserDetailContext);
-    const [search, setSearch] = useState("");  
-    const [toggle, setToggle] = useState(false); 
+    const [search, setSearch] = useState("");
     const router = useRouter();
 
     useEffect(() => {

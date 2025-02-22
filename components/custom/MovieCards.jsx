@@ -12,14 +12,20 @@ function MovieCards({ searchData }) {
 
 
   const clickHandler = (id) => {
-
     setLoading(true);
-    router.push(`/selection/${id}`)
-    setLoading(false);
+    setTimeout(() => {
+      router.push(`/selection/${id}`);
+      setLoading(false);
+    }, 1000);
+  };
 
-  }
   return (
     <div className='relative grid grid-cols-3 grid-rows-2'>
+      {loading && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-10">
+          <div className="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
       {
         searchData && searchData.map((movie) => (
           <div key={movie.id} className='flex flex-col items-start justify-center p-3 gap-y-3 hover:scale-105 transition-all duration-300 cursor-pointer' onClick={() => clickHandler(movie.id)} >
@@ -30,12 +36,7 @@ function MovieCards({ searchData }) {
           </div>
         ))
       }
-      {
-        loading && <div className='absolute w-full h-full flex items-center justify-center bg-white opacity-80 '>
-          <h2 className='text-2xl'>...Loading</h2>
-        </div>
 
-      }
     </div>
   )
 }
