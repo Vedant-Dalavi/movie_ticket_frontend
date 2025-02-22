@@ -16,7 +16,7 @@ function MovieCards({ searchData }) {
     setTimeout(() => {
       router.push(`/selection/${id}`);
       setLoading(false);
-    }, 1000);
+    }, 1500);
   };
 
   return (
