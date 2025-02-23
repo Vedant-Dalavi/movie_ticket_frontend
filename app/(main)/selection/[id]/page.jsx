@@ -6,14 +6,16 @@ import { moviesData } from "@/data/moviesData";
 import { Calendar, CircleUserRound, Globe, Moon, Sun } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function Page() {
     const { id } = useParams();
     if (!id) return null;
     const movie = moviesData.find((movie) => movie.id == id);
 
-    const [ticket, setTicket] = useState(0);
-    const [time, setTime] = useState();
+    const [ticket, setTicket] = useState(1);
+    const [time, setTime] = useState("12:00");
     const [date, setDate] = useState(new Date());
     const [loading, setLoading] = useState(false);
     const [price, setPrice] = useState(0);
@@ -80,7 +82,7 @@ function Page() {
         <div className="flex flex-col gap-y-6 text-black w-full">
             {/* Loading animation */}
             {loading && (
-                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-10">
                     <div className="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
                 </div>
             )}
@@ -163,10 +165,25 @@ function Page() {
                     {/* Date */}
                     <div className="flex flex-row items-center justify-start gap-x-32">
                         <p className="text-lg">Date</p>
-                        <button className="flex gap-x-3 items-center justify-center py-2 px-4 rounded-md bg-[#D9D9D9]">
-                            <Calendar />
-                            <p>{day}-{month}-{year}</p>
-                        </button>
+                        <div className="relative">
+                            <DatePicker
+                                selected={date}
+                                onChange={(date) => setDate(date)}
+                                dateFormat="dd-MM-yyyy"
+                                minDate={new Date()}
+                                className="w-full py-2 px-4 rounded-md  text-black"
+                                popperPlacement="bottom-start"
+                                popperClassName="react-datepicker-popper"
+                                calendarClassName="react-datepicker"
+                                dayClassName={() => "react-datepicker-day"}
+                                customInput={
+                                    <button className="flex gap-x-3 items-center justify-center py-2 px-4 rounded-md bg-[#D9D9D9]">
+                                        <Calendar />
+                                        <p>{day}-{month}-{year}</p>
+                                    </button>
+                                }
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
