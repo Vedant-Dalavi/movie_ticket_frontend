@@ -18,7 +18,7 @@ function Page() {
     const [time, setTime] = useState("12:00");
     const [date, setDate] = useState(new Date());
     const [loading, setLoading] = useState(false);
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState(25);
     const router = useRouter();
 
     const day = String(date.getDate()).padStart(2, "0");
